@@ -7,16 +7,16 @@ This app was created and is maintained by the community and it's **NOT** current
 # Screenshots
 
 ## Login
-![Login](./resources/screenshots/login.png =250x)
+![Login](./resources/screenshots/login.png)
 
 ## Apps List
-![Apps List](./resources/screenshots/apps.png =250x)
+![Apps List](./resources/screenshots/apps.png)
 
 ## One Click
-![One Click](./resources/screenshots/one-click.png =250x)
+![One Click](./resources/screenshots/one-click.png)
 
 ## App Config
-![App Config](./resources/screenshots/app-config.png =250x)
+![App Config](./resources/screenshots/app-config.png)
 
 ## App Logs
-![App Logs](./resources/screenshots/app-logs.png =250x)
+![App Logs](./resources/screenshots/app-logs.png)
