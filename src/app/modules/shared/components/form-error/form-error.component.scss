@@ -1,0 +1,16 @@
+.form-error {
+  background-color: #fff1f0;
+  border: 1px solid #ffa39e;
+
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 4px;
+
+  font-size: medium;
+  white-space: pre-line;
+}
+
+fa-icon {
+  color: var(--ion-color-danger);
+  margin-right: 8px;
+}

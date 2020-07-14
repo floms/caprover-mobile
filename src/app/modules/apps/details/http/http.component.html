@@ -1,0 +1,57 @@
+<ion-content *ngIf="app$ | async as app">
+  <div class="section-container">
+    <p>
+      Your app is internally available as <code class="highlight-text" selectable>srv-captain--{{app.appName}}</code> to
+      other Captain apps. In case of web-app, it is accessible via
+      <code class="highlight-text" selectable>http://srv-captain--{{app.appName}}</code> from other apps.
+    </p>
+
+
+    <div *ngIf="app.notExposeAsWebApp">
+      <ion-button size="small" fill="outline" color="success" (click)="exposeWebApp(app.appName, true)">
+        <fa-icon icon="globe-americas"></fa-icon> &nbsp; Expose as WebApp
+      </ion-button>
+    </div>
+
+    <div *ngIf="!app.notExposeAsWebApp">
+      <div>
+        <ion-button size="small" fill="outline" color="danger" (click)="exposeWebApp(app.appName, false)">
+          <fa-icon icon="globe-americas"></fa-icon> &nbsp; Disable WebApp Access
+        </ion-button>
+      </div>
+
+      <div *ngIf="urls$ | async as urls">
+        <p>
+          Your app is publicly available at:
+        </p>
+
+        <div *ngFor="let url of urls" class="url-container">
+          <ion-button class="ssl-button" size="small" [color]="url.ssl ? 'success': 'danger'" fill="outline"
+            [disabled]="url.ssl" (click)="enableSsl(app.appName, url.domain, url.default)">
+            <fa-icon [icon]="url.ssl ? 'lock' : 'lock-open'"></fa-icon> &nbsp; HTTPS
+          </ion-button>
+
+          <a *ngIf="(url.ssl ? 'https' : 'http') + '://'+ url.domain as href" [href]="href">
+            {{href}}
+          </a>
+
+          <ion-button size="small" color="danger" [hidden]="url.default" fill="outline"
+            (click)="removeCustomDomain(app.appName, url.domain)">
+            <fa-icon [icon]="['far' , 'trash-alt']"></fa-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <fa-icon [icon]="['fas', 'tools']"></fa-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button size="small" color="danger" data-desc="Delete App" (click)="deleteApp(app)">
+        <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

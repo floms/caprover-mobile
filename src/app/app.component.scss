@@ -1,0 +1,37 @@
+ion-menu ion-content {
+  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+}
+
+ion-menu ion-content {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-bottom: 20px;
+}
+
+ion-menu ion-item.selected fa-icon {
+  color: var(--ion-color-primary);
+}
+
+ion-menu ion-item fa-icon {
+  color: #73849a;
+}
+
+ion-item.selected {
+  --color: var(--ion-color-primary);
+}
+
+app-account-info-box {
+  margin: 14px 0;
+}
+
+ion-footer {
+  padding-bottom: var(--ion-safe-area-bottom);
+}
+
+ion-footer.md {
+  padding-bottom: 20px;
+}
+
+.version-wrapper {
+  text-align: right;
+}

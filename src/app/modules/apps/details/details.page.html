@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/apps"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{(app$ | async)?.appName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="http">
+        <fa-icon icon="network-wired"></fa-icon>
+        <ion-label>Http</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="config">
+        <fa-icon icon="cog"></fa-icon>
+        <ion-label>Config</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="deployment">
+        <fa-icon icon="parachute-box"></fa-icon>
+        <ion-label>Deployment</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="logs">
+        <fa-icon icon="terminal"></fa-icon>
+        <ion-label>Logs</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

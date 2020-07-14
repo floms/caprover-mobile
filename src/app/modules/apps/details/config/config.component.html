@@ -1,0 +1,58 @@
+<ion-content *ngIf="app$ | async as app">
+  <ion-list lines="full">
+    <ion-item-divider sticky>
+      <div class="section-container">
+        <div class="flex-horizontal">
+          <div class="flex-grow title">Environment Variables</div>
+
+          <!-- <ion-button (click)="addEnvVar()">
+            <fa-icon icon="plus"></fa-icon>
+          </ion-button> -->
+        </div>
+      </div>
+    </ion-item-divider>
+
+    <ion-item *ngFor="let env of app.envVars">
+      <div class="flex-horizontal fill-width no-overflow">
+        <div class="section-container no-overflow flex-1">
+          <div class="key">{{env.key}}</div>
+          <div class="value">
+            <code selectable>{{env.value}}</code>
+          </div>
+        </div>
+
+        <!-- <div>
+          <ion-button fill="clear">
+            <fa-icon [icon]="['far', 'edit']"></fa-icon>
+          </ion-button>
+        </div> -->
+      </div>
+
+    </ion-item>
+
+    <ion-item-divider sticky>
+      <div class="section-container">
+        <div class="flex-horizontal">
+          <div class="flex-grow title">Port Mapping</div>
+
+          <!-- <ion-button>
+            <fa-icon icon="plus"></fa-icon>
+          </ion-button> -->
+        </div>
+      </div>
+    </ion-item-divider>
+
+    <ion-item *ngFor="let port of app.ports">
+      <div class="section-container horizontal">
+        <div class="flex-1 flex-horizontal">
+          <div class="key upper">Server Port: &nbsp;</div>
+          <div class="value">{{port.hostPort}}</div>
+        </div>
+        <div class="flex-1 flex-horizontal">
+          <div class="key upper">Container Port: &nbsp;</div>
+          <div class="value">{{port.containerPort}}</div>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

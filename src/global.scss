@@ -1,0 +1,186 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import '~@ionic/angular/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+@import 'font-roboto.css';
+
+* {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+ion-input {
+  border-radius: 4px !important;
+  padding-right: 30px;
+  font-size: 0.9em;
+  border: 1.4px solid !important;
+  border-color: #c0c0c0 !important;
+  max-height: 38px;
+  width: 100%;
+  --background: #fff !important;
+}
+
+ion-input.ios {
+  border-radius: 10px !important;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.no-overflow {
+  overflow: hidden;
+}
+
+.flex-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &.align-top {
+    align-items: flex-start;
+  }
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.fill-width {
+  width: 100%;
+}
+
+.title {
+  font-size: 1.4em;
+  font-weight: bold;
+  flex-grow: 1;
+
+  @extend .upper;
+}
+
+.section-container {
+  display: flex;
+  padding: 10px 14px;
+  max-width: 100%;
+
+  @extend .fill-width;
+  @extend .flex-vertical;
+
+  &.horizontal {
+    @extend .flex-horizontal;
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+}
+
+*[selectable] {
+  -webkit-user-select: all; /* Safari */
+  -moz-user-select: all; /* Firefox */
+  -ms-user-select: all; /* IE10+/Edge */
+  user-select: all; /* Standard */
+}
+
+code {
+  background-color: #f9f2f4;
+  padding: 2px 4px;
+  color: #c7254e;
+  border-radius: 4px;
+  font-size: smaller;
+}
+
+ion-avatar {
+  overflow: hidden;
+}
+
+.account-modal-page {
+  --height: auto;
+  .modal-wrapper {
+    width: 90vw;
+    border-radius: 8px;
+    position: absolute;
+    top: 3vh;
+    left: 50%;
+    margin-top: var(--ion-safe-area-top);
+    margin-left: -45vw;
+    display: block;
+
+    .ion-page {
+      position: relative;
+      contain: content;
+      // max-height: 40vh;
+      // height: 40vh;
+      .modal-content {
+        overflow: auto;
+      }
+    }
+  }
+}
+
+ion-fab-button {
+  fa-icon {
+    font-size: 1.4em;
+  }
+}
+
+ion-menu {
+  ion-content {
+    --padding-top: var(--ion-safe-area-top);
+  }
+}
+
+ion-fab-button[data-desc] {
+  position: relative;
+}
+
+ion-fab-button[data-desc]::after {
+  position: absolute;
+  content: attr(data-desc);
+  z-index: 1;
+  right: 55px;
+  bottom: 4px;
+  background-color: var(--ion-color-light);
+  padding: 9px;
+  border-radius: 8px;
+  color: var(--ion-color-dark);
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
+.align-right {
+  text-align: right;
+}
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}

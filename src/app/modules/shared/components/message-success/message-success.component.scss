@@ -1,0 +1,16 @@
+.message-success {
+  background-color: #f6ffed;
+  border: 1px solid #b7eb8f;
+
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 4px;
+
+  font-size: medium;
+  white-space: pre-line;
+}
+
+fa-icon {
+  color: var(--ion-color-success);
+  margin-right: 8px;
+}

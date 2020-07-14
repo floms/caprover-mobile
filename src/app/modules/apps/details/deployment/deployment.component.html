@@ -1,0 +1,52 @@
+<ion-content *ngIf="app$ | async as app">
+  <ion-list lines="full" *ngIf="deployments$ | async as deployments">
+    <ion-item-divider sticky>
+      <div class="section-container title">
+        Version History
+      </div>
+    </ion-item-divider>
+
+    <ion-item *ngFor="let env of deployments">
+      <div class="box-icon" slot="start">
+        <ng-container *ngIf="env.version === app.deployedVersion; else status">
+          <ion-text color="success">
+            <fa-icon [icon]="['fas', 'check-circle']"></fa-icon>
+          </ion-text>
+        </ng-container>
+
+        <ng-template #status>
+          <ion-text [color]="env.deployedImageName ? 'success' : 'danger'" class="other-deployments">
+            <fa-icon [icon]="['fas',  env.deployedImageName ? 'history': 'times-circle']"></fa-icon>
+          </ion-text>
+        </ng-template>
+      </div>
+      <div class="box-info section-container no-overflow flex-1">
+        <div class="key">
+          <fa-icon [icon]="['fas', 'hashtag']"></fa-icon> version
+        </div>
+        <div class="value">{{env.version}}</div>
+
+        <ng-container *ngIf="env.deployedImageName">
+          <div class="key">
+            <fa-icon [icon]="['fab', 'docker']"></fa-icon> image
+          </div>
+          <div class="value">{{env.deployedImageName}}</div>
+        </ng-container>
+
+        <div class="key">
+          <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon> date
+        </div>
+        <div class="value">{{env.timeStamp | date:'MM/dd/yyyy hh:mm:ss a'}}</div>
+
+        <ng-container *ngIf="env.gitHash">
+          <div class="key">
+            <fa-icon [icon]="['fas', 'code-branch']"></fa-icon> git hash
+          </div>
+          <div class="value">{{env.gitHash}}</div>
+        </ng-container>
+
+        <code *ngIf="!env.deployedImageName">Failed Deployment</code>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

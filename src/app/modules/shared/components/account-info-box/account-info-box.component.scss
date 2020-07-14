@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+h4,
+h6 {
+  margin: 0;
+}
+
+h4 {
+  font-size: medium;
+}
+
+h6 {
+  font-size: smaller;
+  margin-bottom: 8px;
+}
+
+app-account-icon {
+  width: 44px;
+  height: 44px;
+}
+
+.row-icon {
+  width: 44px;
+  margin-inline-end: 14px;
+  text-align: center;
+}
+
+app-account-icon.row-icon {
+  height: 44px;
+}
+
+.account-row-container {
+  position: relative;
+
+  .secure-icon {
+    opacity: 0.6;
+  }
+
+  .token-expiration {
+    opacity: 0.6;
+  }
+
+  .remembered {
+    color: var(--ion-color-dark);
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CapRover Mobile</string>
+    <string name="title_activity_main">CapRover Mobile</string>
+    <string name="package_name">com.floms.app.caprover</string>
+    <string name="custom_url_scheme">com.floms.app.caprover</string>
+</resources>

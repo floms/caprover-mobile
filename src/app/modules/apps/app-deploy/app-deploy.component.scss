@@ -1,0 +1,40 @@
+.form-container {
+  padding: 10px 20px;
+
+  .one-click-info {
+    p {
+      padding: 0 10px;
+      white-space: pre-line;
+    }
+  }
+
+  .field-wrapper {
+    padding-bottom: 14px;
+
+    .description {
+      font-size: small;
+      margin-bottom: 8px;
+    }
+  }
+
+  ion-input#\$\$cap_appname {
+    text-transform: lowercase;
+  }
+  
+  ion-input {
+    --padding-start: 14px;
+    font-size: 0.8em;
+    color: rgba($color: #000000, $alpha:0.9);
+  }
+  
+  .persistent {
+    ion-checkbox {
+      margin-right: 8px;
+    }
+  }
+  
+  .submit-row {
+    text-align: center;
+    margin: 20px;
+  }
+}

@@ -1,0 +1,88 @@
+h4,
+h6 {
+  margin: 0;
+}
+
+h4 {
+  font-size: medium;
+}
+
+h6 {
+  font-size: smaller;
+  margin-bottom: 8px;
+}
+
+app-account-icon {
+  width: 44px;
+  height: 44px;
+}
+
+.row-icon {
+  width: 44px;
+  margin-inline-end: 14px;
+  text-align: center;
+}
+
+app-account-icon.row-icon {
+  height: 44px;
+}
+
+.account-row-container {
+  position: relative;
+
+  .secure-icon {
+    opacity: 0.6;
+  }
+
+  .token-expiration {
+    opacity: 0.6;
+  }
+
+  .remembered {
+    color: var(--ion-color-success);
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.current-account-container {
+  border-bottom: 1px solid;
+  border-color: var(--ion-color-light-shade);
+
+  padding: 18px;
+  padding-bottom: 8px;
+
+  app-account-info-box {
+    padding-top: 8px;
+  }
+
+  .account-actions {
+    text-align: center;
+    padding-top: 16px;
+  }
+}
+
+
+
+app-account-info-box {
+    width: 100%;
+}
+
+
+ion-item {
+  app-account-info-box {
+    padding-top: 8px;
+    padding-bottom: 16px;
+  }
+}
+
+ion-list-header ion-label {
+    margin: 12px 0 16px 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ion-list.additional-options {
+    margin-top: 16px;
+}

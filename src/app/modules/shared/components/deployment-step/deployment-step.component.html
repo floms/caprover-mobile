@@ -1,0 +1,22 @@
+<div class="flex-horizontal">
+  <div class="icon">
+    <span class="deploying-icon" *ngIf="step.complete === false">
+      <fa-icon icon="spinner"></fa-icon>
+    </span>
+
+    <fa-icon id="complete" *ngIf="step.complete === true" [icon]="['far', 'check-circle']"></fa-icon>
+
+    <ng-container *ngIf="step.complete === undefined">
+      <fa-icon *ngIf="!step.error; else error" id="pending" [icon]="'plus-circle'"></fa-icon>
+
+      <ng-template #error>
+        <fa-icon id="error" [icon]="['far', 'times-circle']"></fa-icon>
+      </ng-template>
+
+    </ng-container>
+  </div>
+
+  <div>
+    <small>{{step.label}}</small>
+  </div>
+</div>

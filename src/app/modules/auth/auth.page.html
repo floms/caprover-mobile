@@ -1,0 +1,80 @@
+<!-- Default back button -->
+<ion-header class="ion-no-border" *ngIf="account$ | async" translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="close-outline" text="" [defaultHref]="backRoute"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true">
+  <div class="section-container">
+    <div class="name-wrapper">
+      <img class="logo" src="assets/caprover.svg" />
+
+      <h4>CapRover</h4>
+      <div>Mobile<strong>Admin</strong></div>
+      <span class="badge">Community Maintained</span>
+    </div>
+
+    <form [formGroup]="loginForm" novalidate (submit)="login()" #form="ngForm">
+      <div class="field-wrapper">
+        <ion-label>Host</ion-label>
+        <ion-input type="url" formControlName="host" placeholder="i.e., captain.yourhost.com">
+          <fa-icon icon="server" prefix></fa-icon>
+        </ion-input>
+
+        <ng-container *ngIf="form.submitted">
+          <app-form-error *ngIf="loginForm.controls['host'].errors as error">
+            <strong>Host</strong> is required. Enter your host name including the captain subdomain i.e.,
+            <code>captain.your-domain.com</code>
+          </app-form-error>
+        </ng-container>
+      </div>
+
+      <div class="field-wrapper">
+        <ion-label>Password</ion-label>
+        <ion-input type="text" formControlName="password" [type]="viewPassword ? 'text' : 'password'"
+          placeholder="password">
+          <fa-icon icon="key" prefix></fa-icon>
+
+          <ion-button size="small" fill="none" suffix (click)="toggleViewPassword()">
+            <fa-icon [icon]="['far', viewPassword ? 'eye-slash' : 'eye']"></fa-icon>
+          </ion-button>
+        </ion-input>
+
+        <ng-container *ngIf="form.submitted">
+          <app-form-error *ngIf="loginForm.controls['password'].errors as error">
+            <strong>Password</strong> is required.
+          </app-form-error>
+        </ng-container>
+      </div>
+
+
+      <div class="field-wrapper">
+        <label class="flex-horizontal">
+          <ion-checkbox color="primary" formControlName="ssl"></ion-checkbox> Using SSL?
+        </label>
+      </div>
+
+
+      <div class="field-wrapper">
+        <label class="flex-horizontal">
+          <ion-checkbox color="primary" formControlName="remember"></ion-checkbox> Remember
+        </label>
+
+        <div class="hint">
+          Only the auth token will be stored locally, once it expires you will need to enter your password again. Your
+          password is <strong>NEVER</strong> stored.
+        </div>
+      </div>
+
+      <div class="field-wrapper align-right">
+        <ion-button fill="outline" type="submit">
+          <fa-icon icon="sign-in-alt"></fa-icon> &nbsp; Login
+        </ion-button>
+      </div>
+    </form>
+
+  </div>
+
+</ion-content>

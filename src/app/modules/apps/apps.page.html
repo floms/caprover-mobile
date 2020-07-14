@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Apps</ion-title>
+    <ion-buttons slot="end" class="account-picker">
+      <ion-button size="large" fill="clear" shape="round">
+        <app-account-icon *ngIf="(account$ | async) as account" [account]="account" (click)="changeAccount()">
+
+        </app-account-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <div class="section-container horizontal">
+      <ion-searchbar type="search" (ionInput)="onSearch($event)"></ion-searchbar>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="results$ | async as results">
+    <ion-card *ngFor="let app of results.appDefinitions">
+      <ion-card-header>
+        <div class="flex-horizontal align-top">
+          <div class="flex-grow">
+            <ion-card-title>{{app.appName}}</ion-card-title>
+            <ion-card-subtitle>{{app.appName}}.{{results.rootDomain}}</ion-card-subtitle>
+            <ion-card-subtitle class="app-status-row">
+              <ion-text *ngIf="!app.notExposeAsWebApp" [color]="app.hasDefaultSubDomainSsl ? 'success': 'danger'">
+                <fa-icon [icon]="app.hasDefaultSubDomainSsl ? 'lock': 'lock-open'"></fa-icon>
+              </ion-text>
+
+              <fa-icon *ngIf="app.hasPersistentData" icon="database"></fa-icon>
+
+              <span class="building-icon" *ngIf="app.isAppBuilding">
+                <fa-icon icon="sync-alt"></fa-icon>
+              </span>
+            </ion-card-subtitle>
+          </div>
+          <div>
+            <ion-button fill="clear" color="tertiary" size="small" *ngIf="!app.notExposeAsWebApp"
+              (click)="navigate(results, app)">
+
+              <fa-icon icon="link"></fa-icon> &nbsp; Browser
+            </ion-button>
+          </div>
+        </div>
+
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{app.description}}</p>
+
+        <div class="flex-horizontal">
+          <div class="flex-grow">
+            <small>
+              <fa-icon icon="hashtag"></fa-icon> &nbsp; v.{{app.deployedVersion}}
+            </small>
+          </div>
+
+          <div>
+            <ion-button size="small" color="dark" fill="outline" (click)="viewApp(app)">
+              View &nbsp; <fa-icon icon="chevron-right"></fa-icon>
+            </ion-button>
+          </div>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <fa-icon icon="plus"></fa-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button data-desc="One-Click Apps" (click)="deploy(true)">
+        <fa-icon icon="cubes"></fa-icon>
+      </ion-fab-button>
+      <ion-fab-button data-desc="New App" (click)="deploy()">
+        <fa-icon icon="box"></fa-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

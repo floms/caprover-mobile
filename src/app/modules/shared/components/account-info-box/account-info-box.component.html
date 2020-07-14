@@ -1,0 +1,19 @@
+<div class="flex-horizontal account-row-container">
+  <app-account-icon class="row-icon" [account]="account"></app-account-icon>
+
+  <div class="flex-grow">
+    <h6>
+      <ion-text [color]="account.secure ? 'success': 'danger'" class="secure-icon">
+        <fa-icon [icon]="account.secure ? 'lock': 'lock-open'"></fa-icon>
+      </ion-text>
+      {{account.host}}
+    </h6>
+
+    <small class="token-expiration">
+      <fa-icon icon="key"></fa-icon> &nbsp;
+      {{account.token | tokenExpiration | date:'MM/dd/yyyy @ hh:mm a'}}
+    </small>
+
+    <fa-icon *ngIf="account.remember" class="remembered" icon="bookmark"></fa-icon>
+  </div>
+</div>

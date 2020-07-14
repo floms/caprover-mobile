@@ -1,0 +1,7 @@
+{
+  "name": "CapRover",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

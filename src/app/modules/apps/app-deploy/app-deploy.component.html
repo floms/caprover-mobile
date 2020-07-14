@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/apps"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{pageTitle$ | async}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-container" *ngIf="deploymentSteps$ | async as steps">
+    <ng-container *ngIf="steps.length > 0; else setup">
+      <h4>{{oneClickApp?.displayName}}</h4>
+
+      <p>This process takes a few minutes to complete. DO NOT refresh this page and DO NOT navigate away!!!</p>
+
+      <div>
+        <app-deployment-step *ngFor="let step of steps" [step]="step"></app-deployment-step>
+      </div>
+
+      <div class="deployment-complete" *ngIf="!(deploymentInProgress$ | async)">
+        <app-form-error *ngIf="error$ | async as error; else complete">
+          <strong>Error</strong>: {{error?.message}}
+        </app-form-error>
+
+        <ng-template #complete>
+
+          <app-message-success *ngIf="instructions$ | async as instructions">
+            {{instructions.end}}
+          </app-message-success>
+        </ng-template>
+
+        <div class="submit-row">
+          <ion-button color="success" fill="outline" (click)="finish()">
+            Finish
+          </ion-button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #setup>
+      <div *ngIf="oneClickApp" class="one-click-info">
+        <h4>{{oneClickApp.displayName}}</h4>
+        <p>{{oneClickApp.instructions.start}}</p>
+      </div>
+
+      <form [formGroup]="newAppForm" novalidate (submit)="deploy()" #form="ngForm">
+        <div *ngFor="let field of formFields" class="flex-vertical field-wrapper">
+          <ion-label>{{field.label}}</ion-label>
+          <div class="description">{{field.description}}</div>
+
+          <ion-input [id]="field.id" [placeholder]="field.placeholder" type="text" [formControlName]="field.id">
+          </ion-input>
+
+          <ng-container *ngIf="form.submitted">
+            <app-form-error *ngIf="newAppForm.controls[field.id].errors as error">
+              Invalid, <strong>{{error?.pattern.value}}</strong>
+              does not match pattern <code>{{error?.pattern?.pattern}}</code>
+            </app-form-error>
+          </ng-container>
+        </div>
+
+        <div [hidden]="oneClickApp" class="flex-horizontal persistent">
+          <ion-checkbox name="persistent" formControlName="persistentData"></ion-checkbox>
+          <ion-label for="persistent">Has Persistent Data?</ion-label>
+
+          <ion-button size="small" fill="clear" shape="round" color="tertiary" (click)="persistentData()">
+            <fa-icon [icon]="['far', 'question-circle']"></fa-icon>
+          </ion-button>
+        </div>
+
+        <div class="submit-row">
+          <ion-button type="submit">
+            <fa-icon icon="upload"></fa-icon> &nbsp; Deploy
+          </ion-button>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+</ion-content>

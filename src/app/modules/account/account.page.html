@@ -1,0 +1,26 @@
+<div class="current-account-container" *ngIf="account$ | async as account">
+  <div class="">
+    <app-account-info-box [account]="account"></app-account-info-box>
+    <div class="account-actions">
+      <ion-button fill="outline" size="small" (click)="logout(account)">
+        Logout &nbsp; <fa-icon icon="sign-out-alt"></fa-icon>
+      </ion-button>
+    </div>
+  </div>
+</div>
+
+<ion-list lines="none" *ngIf="accounts$ | async as accounts">
+  <ion-list-header *ngIf="accounts.length > 0">
+    <ion-label>Other Accounts</ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let account of accounts" button detail="false" (click)="setActiveAccount(account)">
+    <app-account-info-box [account]="account"></app-account-info-box>
+  </ion-item>
+</ion-list>
+
+<ion-list lines="none" class="additional-options">
+  <ion-item button detail="false" (click)="addAccount()">
+    <fa-icon icon="user-plus" slot="start" class="row-icon"></fa-icon>
+    <ion-label>Add Another Account</ion-label>
+  </ion-item>
+</ion-list>

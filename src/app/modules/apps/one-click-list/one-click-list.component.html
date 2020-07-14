@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>One Click Apps</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <div class="section-container horizontal">
+      <ion-searchbar (ionInput)="onSearch($event)"></ion-searchbar>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ng-container *ngIf="apps$ | async as apps">
+    <ion-card *ngFor="let app of apps">
+      <img [src]="'https://oneclickapps.caprover.com/v2/logos/' + app.logoUrl" />
+      <ion-card-header>
+        <ion-card-title>
+          {{app.displayName}}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{app.description}}</p>
+
+        <div style="text-align: center; padding: 20px 0;">
+          <ion-button (click)="deploy(app)">
+            <fa-icon icon="hammer"></fa-icon> &nbsp; Setup
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>

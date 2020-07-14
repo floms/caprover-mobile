@@ -1,0 +1,18 @@
+.key {
+  font-weight: bold;
+  font-size: 0.75em;
+}
+
+.value {
+  font-size: 0.75em;
+  white-space: nowrap;
+  max-width: 100%;
+
+  text-overflow: ellipsis;
+}
+
+ion-item {
+  ion-title {
+    display: block;
+  }
+}

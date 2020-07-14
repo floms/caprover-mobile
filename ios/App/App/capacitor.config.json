@@ -1,0 +1,13 @@
+{
+  "appId": "com.floms.app.caprover",
+  "appName": "CapRover Mobile",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
